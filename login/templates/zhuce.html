@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册信息</title>
+</head>
+<body>
+<p>注册用户</p>
+<form action="{% url 'zhuce' %}" method="post">
+    {% csrf_token %}
+    <p>用户：{{ fm.username }}{{ fm.errors.username.0 }}</p>
+    <p>密码：{{ fm.password }}{{ fm.errors.password.0 }}</p>
+
+
+
+    <p><input type="submit" value="提交" ></p>
+</form>
+</body>
+</html>

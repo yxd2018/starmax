@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎登录</title>
+    <script src="/static/jquery/jquery.min.js"></script>
+</head>
+<body>
+<p>用户登录注册</p>
+
+<form id="fm" action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+
+        <p>用户：{{ fm.username }}{{ fm.errors.username.0 }}</p>
+        <p>密码：{{ fm.password }}{{ fm.errors.password.0 }}</p>
+
+        <input type="submit" value="登录" />
+        <a href="http://127.0.0.1:8000/zhuce"><input type="button" value="注册" onclick="submitAjaxForm();" /></a>
+</form>
+
+</body>
+</html>
+<script src="/static/jquery/jquery.min.js"></script>
+    <script>
+        function submitAjaxForm() {
+            $.ajax({
+                url: '{% url 'zhuce' %}',
+                type: 'POST',
+                data: $('#fm').serialize(),
+                success:function (data) {
+                    console.log(data);
+                }
+            })
+        }
+    </script>
